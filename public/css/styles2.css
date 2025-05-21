@@ -1,0 +1,133 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(to bottom right, #565682, #083469);
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+#game-container {
+  background: linear-gradient(to bottom right, #353539, #546c88);
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+#game-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+#game-container p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  color: #ddd;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 10px;
+  background-color: #eeeeee;
+  color: #000000;
+  font-size: 1rem;
+  outline: none;
+}
+
+button {
+  padding: 12px 20px;
+  margin: 10px 5px;
+  border: none;
+  border-radius: 10px;
+  background-color: #8e55ac;
+  color: #efefef;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #567fbc;
+  transform: scale(1.05);
+}
+
+#play-btn {
+  background-color: #000000;
+  color: rgb(0, 255, 4);
+}
+
+#play-btn:hover {
+  background-color: #26ff00;
+  color: #000000;
+}
+
+#attempts-list {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+}
+
+#attempts-list li {
+  background: rgb(171, 66, 66);
+  margin: 5px 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+#message-area {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+#round-info {
+  margin-top: 20px;
+  font-style: italic;
+  color: #3bed32;
+}
+
+#back-home-btn {
+  margin-top: 30px;
+  background-color: #2a609e;
+  color: white;
+}
+
+#back-home-btn:hover {
+  background-color: #6e2886;
+}
+
+/* Loading indicator */
+#loading-indicator {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+color: #d0d0d0;
+font-weight: 700;
+font-size: 18px;
+background-color: rgba(0, 0, 0, 0.472);
+padding: 10px 20px;
+border-radius: 12px;
+display: none;
+user-select: none;
+z-index: 20;
+animation: pulse 1.6s infinite ease-in-out;
+}

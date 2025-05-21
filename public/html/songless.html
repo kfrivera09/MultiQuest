@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Songless - Adivina la Canción</title>
+    <link rel="stylesheet" href="/css/styles2.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Songless 🎵</h1>
+        <p>Escribe el nombre del artista y juega.</p>
+
+        <input type="text" id="artist-input" placeholder="Escribe el nombre del artista">
+        <button id="start-btn">Iniciar Juego</button>
+
+        <div id="game-area" style="display: none;">
+            <audio id="song-audio"></audio>
+            <button id="play-btn">🎧 Reproducir Fragmento</button>
+
+            <div id="loading-indicator">Cargando...</div>
+
+            <ul id="attempts-list"></ul> <!-- Historial de intentos -->
+
+            <input type="text" id="song-input" placeholder="Escribe el nombre de la canción">
+            <button id="submit-btn">Enviar</button>
+
+            <div id="message-area"></div>
+
+            <p id="round-info">Ronda: 1/5</p>
+        </div>
+    </div>
+
+     <button id="back-home-btn">Volver a Home</button>
+
+    <script src="/js/songless.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Trivia Musical </h1>
+        <!-- Contenedor del Puntaje -->
+    <div id="score-container" style="display: none;">
+        <p>Puntaje: <span id="score">0</span></p>
+    </div>
+    </header>
+
+    <!-- Contenedor del Puntaje -->
+    <div id="score-container" style="display: none;">
+        <p>Puntaje: <span id="score">0</span></p>
+    </div>
+
+    <!-- Menú de Inicio -->
+    <section id="menu">
+        <div class="game-option" id="trivia-music">
+            <h2>🎵 Trivia Musical</h2>
+            <p>¡Adivina el título de la canción escuchando fragmentos!</p>
+
+            <!-- Botón Jugar -->
+            <button id="play-game-btn" aria-label="Iniciar Trivia Musical">Jugar</button>
+        </div>
+    </section>
+
+    <!-- Formulario para ingresar el artista -->
+    <div id="artist-form" style="display: none; text-align: center;">
+        <label for="artist-name">Introduce el nombre del artista:</label>
+        <input type="text" id="artist-name" autocomplete="off" placeholder="Escribe el nombre del artista">
+        <button id="artist-search-btn">Confirmar</button>
+    </div>
+
+    <!-- Contenedor del Juego -->
+    <main id="quiz" style="display: none;">
+        <!-- Progreso del Juego -->
+        <p id="game-progress">Ronda 1 de 5</p>
+
+        <!-- Pregunta del Juego -->
+        <div id="question-container">
+            <p id="question-text">¿Cuál es el título de esta canción?</p>
+        </div>
+
+        <!-- Botón para Reproducir Fragmentos -->
+        <button id="play-fragment-btn" aria-label="Reproducir Fragmento">🎧 Reproducir Fragmento</button>
+
+        <div id="loading-indicator">Cargando...</div>
+
+        <!-- Opciones de Respuesta -->
+        <div id="answers-container"></div>
+
+        <!-- Retroalimentación -->
+        <p id="feedback"></p>
+
+        <!-- Intentos Restantes -->
+        <p>Intentos restantes: <span id="attempts">3</span></p>
+    </main>
+
+    <!-- Sección de Resultados -->
+    <section id="result" style="display: none;">    
+        <h2>¡Juego Terminado!</h2>
+        <p id="score">Tu puntuación es: <span>0</span></p>
+        <button id="restart-btn" aria-label="Reiniciar el Juego">Jugar de Nuevo</button>
+    </section>
+
+    <button id="back-home-btn">Volver a Home</button>
+
+    <div id="feedback"></div>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

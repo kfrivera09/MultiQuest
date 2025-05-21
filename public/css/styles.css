@@ -1,0 +1,505 @@
+/* Fondo */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(to bottom, #1a1a2e, #16213e);
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased; /* Mejora suavidad tipográfica */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* Texto feedback */
+#feedback {
+  color: rgb(137, 255, 68);
+  font-size: 14px;
+  margin-top: 20px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+footer {
+  margin-top: 20px;
+}
+
+/* Reset y box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent; /* Para móviles: quitar highlight */
+}
+
+/* Botón para volver */
+#back-home-btn {
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  background-color: #1f7a95;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(29, 185, 84, 0.4);
+}
+#back-home-btn:hover {
+  background-color: #5e1194;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+}
+#back-home-btn:active {
+  transform: scale(0.95);
+  box-shadow: inset 0 2px 6px rgba(235, 235, 235, 0.8);
+}
+
+/* Menú principal */
+#menu {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 30px;
+  width: 90%;
+  max-width: 650px;
+  margin: 30px auto;
+  background: linear-gradient(145deg, #222, #1a1a1a);
+  border-radius: 20px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  /* Nueva animación suave de aparición */
+  animation: fadeIn 0.7s ease forwards;
+}
+
+/* Animación fadeIn */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(15px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Tarjetas de opción de juego */
+.game-option {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  padding: 22px 25px;
+  border-radius: 18px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  user-select: none;
+  will-change: transform;
+}
+.game-option:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 16px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+}
+.game-option h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+}
+.game-option p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+.game-option button {
+  background-color: #0f3460;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(15, 52, 96, 0.5);
+}
+.game-option button:hover {
+  background-color: #16213e;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(22, 33, 62, 0.7);
+}
+
+/* Contenedor del quiz */
+#quiz {
+  width: 90%;
+  max-width: 600px;
+  background-color: #352f2f;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  position: relative; /* Para posicionar loading */
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+}
+
+/* Question container */
+#question-container {
+  background: #e94560;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-align: center;
+  user-select: none;
+  /* Animación de fade */
+  animation: fadeIn 0.5s ease;
+}
+
+/* Botón de iniciar juego */
+#play-btn,
+#play-fragment-btn {
+  background-color: #1db954;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  border: none;
+  user-select: none;
+}
+#play-btn:hover,
+#play-fragment-btn:hover {
+  background-color: #1aa34a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(26, 163, 74, 0.7);
+}
+#play-btn:active,
+#play-fragment-btn:active {
+  transform: scale(0.98);
+}
+
+/* Botones de opciones */
+.option-btn {
+  background-color: #1f1f1f;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 15px;
+  border: 2px solid #e94560;
+  border-radius: 4px; /* Pequeño cambio para suavizar */
+  width: 100%;
+  max-width: 300px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin: 10px auto;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  display: block;
+  text-align: center;
+  user-select: none;
+}
+.option-btn:hover {
+  background-color: #e94560;
+  color: white;
+  transform: scale(1.05);
+  border-color: white;
+  box-shadow: 0 6px 12px rgba(233, 69, 96, 0.8);
+}
+.option-btn:active {
+  transform: scale(0.98);
+  background-color: #b7324a;
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+.option-btn:focus {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
+
+#score span {
+  color: #44ff3d;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* Puntaje */
+#score-container {
+  background-color: #1f1f1f;
+  color: white;
+  padding: 10px 20px;
+  border: 2px solid #7ef06a;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  display: none;
+  transition: all 0.3s ease-in-out;
+  width: fit-content; /* Evita que se expanda demasiado */
+  max-width: 90%; /* En caso de pantallas pequeñas */
+  margin: 20px auto; /* Centrado horizontal si pierde el flex */
+}
+
+/* Resultado */
+#result {
+  display: none;
+  width: 90%;
+  max-width: 400px;
+  margin: 30px auto;
+  background: linear-gradient(145deg, #1f1f3a, #0f2a50);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.05);
+  text-align: center;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease-in-out;
+  user-select: none;
+}
+
+#result h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #7ef06a;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  letter-spacing: 1px;
+}
+
+#result:hover {
+  transform: scale(1.02);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.07);
+}
+
+/* Botón reiniciar */
+#restart-btn {
+  background-color: #cc3057;
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+ font-weight: 800;
+ padding: 14px 26px; 
+ border-radius: 28px;
+ cursor: pointer;
+ margin-top: 25px;
+ border: none;
+ transition: background-color 0.3s ease, transform 0.3s ease;
+ box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+}
+
+#restart-btn:hover {
+ background-color: #481150;
+ transform: scale(1.06);
+ box-shadow: 0 8px 16px rgba(112, 9, 156, 0.9);
+}
+
+#restart-btn:active {
+transform: scale(0.95);
+}
+
+/* Formulario artista */
+#artist-form {
+width: 100%;
+max-width: 500px;
+margin: 40px auto;
+background: linear-gradient(145deg, #222, #111);
+padding: 30px;
+border-radius: 20px;
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+color: white;
+}
+#artist-form label {
+display: block;
+font-size: 18px;
+font-weight: 700;
+margin-bottom: 12px;
+letter-spacing: 0.03em;
+}
+#artist-form input[type="text"] {
+width: 100%;
+padding: 14px 18px;
+font-size: 16px;
+border-radius: 10px;
+border: none;
+outline: none;
+background-color: #2a2a2a;
+color: white;
+transition: background-color 0.3s ease;
+box-shadow: inset 2px 2px 5px rgba(0,0,0,0.6);
+}
+#artist-form input[type="text"]:focus {
+background-color: #3a3a3a;
+box-shadow: 0 0 10px #1db954;
+}
+#artist-form button {
+margin-top: 20px;
+background-color: #1db954;
+color: white;
+font-weight: 700;
+font-size: 18px;
+padding: 14px 30px;
+border-radius: 25px;
+cursor: pointer;
+border: none;
+box-shadow: 0 6px 12px rgba(29, 185, 84, 0.7);
+transition: background-color 0.3s ease, transform 0.3s ease;
+}
+#artist-form button:hover {
+background-color: #1aa34a;
+transform: scale(1.05);
+box-shadow: 0 8px 16px rgba(26, 163, 74, 0.9);
+}
+#artist-form button:active {
+transform: scale(0.95);
+}
+
+/* Contenedor opciones */
+#options-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 12px;
+margin-top: 15px;
+}
+
+/* Loading indicator */
+#loading-indicator {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+color: #1db954;
+font-weight: 700;
+font-size: 18px;
+background-color: rgba(0,0,0,0.7);
+padding: 10px 20px;
+border-radius: 12px;
+display: none;
+user-select: none;
+box-shadow: 0 4px 10px rgba(29, 185, 84, 0.7);
+z-index: 20;
+animation: pulse 1.6s infinite ease-in-out;
+}
+
+@keyframes pulse {
+0%, 100% {
+opacity: 1;
+}
+50% {
+opacity: 0.5;
+}
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+#menu {
+max-width: 95%;
+padding: 25px;
+}
+#quiz {
+max-width: 90%;
+}
+.game-option {
+font-size: 1.1rem;
+padding: 18px 20px;
+}
+#back-home-btn {
+font-size: 14px;
+padding: 8px 16px;
+}
+#score-container {
+font-size: 16px;
+padding: 8px 14px;
+top: 15px;
+right: 15px;
+}
+#result {
+padding: 20px 18px;
+font-size: 16px;
+}
+#restart-btn {
+padding: 12px 22px;
+font-size: 16px;
+}
+#artist-form {
+padding: 20px;
+}
+#artist-form label {
+font-size: 16px;
+}
+#artist-form input[type="text"] {
+padding: 12px 14px;
+font-size: 14px;
+}
+#artist-form button {
+font-size: 16px;
+padding: 12px 20px;
+}
+.option-btn {
+max-width: 100%;
+}
+}
+
+/* Más pequeño aún para móviles muy estrechos */
+@media (max-width: 400px) {
+.game-option h2 {
+font-size: 18px;
+}
+.game-option p {
+font-size: 14px;
+}
+#question-container {
+font-size: 16px;
+}
+#score-container {
+font-size: 14px;
+padding: 6px 10px;
+}
+#result {
+font-size: 14px;
+padding: 16px 12px;
+}
+}
+
+/* Scroll para opciones si se acumulan */
+#options-container {
+max-height: 320px;
+overflow-y: auto;
+width: 100%;
+padding-right: 8px;
+}
+#options-container::-webkit-scrollbar {
+width: 8px;
+}
+#options-container::-webkit-scrollbar-thumb {
+background-color: #1db954;
+border-radius: 10px;
+}
+#options-container::-webkit-scrollbar-track {
+background: transparent;
+}
+
+/* Añadido cursor en todo botón */
+button {
+cursor: pointer;
+}
+
+/* Selección sin highlight */
+::selection {
+background-color: #1db954;
+color: #fff;
+}
