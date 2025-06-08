@@ -124,25 +124,89 @@ document.getElementById('submit-btn').addEventListener('click', () => {
 });
 
 // Función para cambiar de ronda
+
+function showFinalScore() {
+    const gameArea = document.getElementById('game-area');
+    const finalScoreDiv = document.getElementById('final-score');
+    const finalPoints = document.getElementById('final-points');
+    const finalMessage = document.getElementById('final-message');
+
+    gameArea.style.display = "none";
+    finalScoreDiv.style.display = "block";
+
+    finalPoints.textContent = score;
+
+    if (score === 50) {
+        finalMessage.textContent = "¡Impresionante! Adivinaste todo perfectamente. 🏆";
+    } else if (score >= 30) {
+        finalMessage.textContent = "¡Muy bien! Lo hiciste genial 🎶";
+    } else {
+        finalMessage.textContent = "¡Buen intento! Puedes mejorar la próxima vez 🎧";
+    }
+}
+
 function nextRound() {
     if (roundCount < maxRounds) {
         roundCount++;
         attemptCount = 0;
         audioDuration = 2;
         document.getElementById('attempts-list').innerHTML = "";
-        document.getElementById('song-input').value = ""; // ✅ Limpia el campo de entrada
+        document.getElementById('song-input').value = "";
         document.getElementById('round-info').textContent = `Ronda: ${roundCount}/5`;
         loadNewSong();
     } else {
-        displayMessage("success", `¡Juego terminado! Has completado las 5 rondas. Puntaje final: ${score}`);
+        displayMessage("success", `¡Juego terminado! Puntaje final: ${score}`);
+        
+        setTimeout(() => {
+            showFinalScore();
+        }, 1000); //tiempo de espera para mostrar el mensaje final
     }
 }
+
 
 // Función para mostrar mensajes en pantalla
 function displayMessage(type, text) {
     const messageArea = document.getElementById('message-area');
-    messageArea.innerHTML = `<p class="${type}">${text}</p>`;
+
+    // Limpiar clases anteriores
+    messageArea.className = "";
+
+    if (type === "error") {
+        messageArea.classList.add("message-error");
+    } else if (type === "success") {
+        messageArea.classList.add("message-success");
+    }
+
+    messageArea.textContent = text;
 }
+
+// Reinicia el juego cuando se presiona "Volver a Jugar"
+document.getElementById("restart-btn").addEventListener("click", () => {
+    // Reset de variables
+    currentSong = null;
+    attemptCount = 0;
+    audioDuration = 2;
+    roundCount = 1;
+    score = 0;
+    usedSongs = [];
+    selectedArtist = "";
+
+    // Mostrar campos de artista e iniciar
+    const artistInput = document.getElementById('artist-input');
+    artistInput.value = "";
+    artistInput.style.display = "block";
+    document.getElementById('start-btn').style.display = "inline-block";
+
+    // Ocultar áreas activas
+    document.getElementById('game-area').style.display = "none";
+    document.getElementById('final-score').style.display = "none";
+
+    // Limpiar campos de entrada y mensajes
+    document.getElementById('song-input').value = "";
+    document.getElementById('attempts-list').innerHTML = "";
+    document.getElementById('round-info').textContent = `Ronda: 1/5`;
+    document.getElementById('message-area').textContent = "";
+});
 
 //boton para volver al home
 document.getElementById("back-home-btn").addEventListener("click", () => {

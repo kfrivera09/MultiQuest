@@ -11,7 +11,7 @@
         <h1>Songless 🎵</h1>
         <p>Escribe el nombre del artista y juega.</p>
 
-        <input type="text" id="artist-input" placeholder="Escribe el nombre del artista">
+        <input type="text" id="artist-input" placeholder="Escribe el nombre del artista" autocomplete="off">
         <button id="start-btn">Iniciar Juego</button>
 
         <div id="game-area" style="display: none;">
@@ -29,6 +29,13 @@
 
             <p id="round-info">Ronda: 1/5</p>
         </div>
+    </div>
+
+    <div id="final-score" style="display: none;">
+    <h2>🎉 ¡Felicidades!</h2>
+    <p id="final-message"></p>
+    <p>Puntaje final: <strong id="final-points">0</strong> puntos</p>
+    <button id="restart-btn">Volver a Jugar</button>
     </div>
 
      <button id="back-home-btn">Volver a Home</button>

@@ -3,14 +3,14 @@ const games = {
     music: [
         {
             name: 'Trivia Musical',
-            description: 'Adivina canciones y géneros.',
-            image: 'images/music1.jpg',
+            description: 'selecciona la canción correcta.',
+            image: '/images/trivia.png',
             link: '/html/index.html'
         },
         {
             name: 'Songless',
-            description: 'Identifica canciones con fragmentos cortos.',
-            image: 'images/music2.jpg',
+            description: 'Adivina canciones con fragmentos cortos.',
+            image: '/images/songless.png',
             link: '/html/songless.html'
         }
     ],
@@ -18,24 +18,24 @@ const games = {
         {
             name: 'Wordless',
             description: 'Adivina palabras en pocos intentos.',
-            image: 'images/words1.jpg'
+            image: ''
         },
         {
             name: 'Versus Crucigramas',
             description: 'Compite resolviendo crucigramas temáticos.',
-            image: 'images/words2.jpg'
+            image: ''
         }
     ],
     general: [
         {
             name: 'Trivia Historia',
             description: 'Preguntas sobre historia.',
-            image: 'images/general1.jpg'
+            image: ''
         },
         {
             name: 'Trivia Ciencia',
             description: 'Explora el mundo de la ciencia.',
-            image: 'images/general2.jpg'
+            image: ''
         }
     ]
 };
@@ -65,8 +65,8 @@ function showGames(category) {
     // Cambiar el título de la sección según la categoría (formateado)
     const formattedTitle = {
         music: "Música",
-        words: "Palabras",
-        general: "Cultura General"
+        words: "Palabras. (PROXIMAMENTE)",
+        general: "Cultura General. (PROXIMAMENTE)"
     };
     document.getElementById('games-title').textContent = `Juegos de ${formattedTitle[category] || category}`;
 

@@ -12,6 +12,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="/css/categories.css">
+    
 </head>
 <body>
     <!-- Header -->
@@ -23,6 +24,7 @@
                 <li><a href="#intro">Inicio</a></li>
                 <li><a href="#categories">Categorías</a></li>
                 <li><a href="#contact">Contacto</a></li>
+                <li><a href="#about">Sobre Nosotros</a></li>
             </ul>
         </nav>
         <button class="login-btn">Iniciar Sesión</button>
@@ -39,19 +41,21 @@
         <li><a href="#intro" onclick="toggleMenu()">Inicio</a></li>
         <li><a href="#categories" onclick="toggleMenu()">Categorías</a></li>
         <li><a href="#contact" onclick="toggleMenu()">Contacto</a></li>
+        <li><a href="#about" onclick="toggleMenu()">Sobre Nosotros</a></li>
         <li><a href="#" onclick="toggleMenu()">Iniciar Sesión</a></li>
     </ul>
 </nav>
 
-
 </header>
-
-    <!-- Introductorio -->
-    <section id="intro">
-        <h1>¡Bienvenido a la diversión!</h1>
-        <p>Explora nuestras categorías de juegos y desafía tus conocimientos con trivias únicas y entretenidas.</p>
-        <a href="#categories" class="play-link">Comenzar</a>
-    </section>
+    <!-- Introducción -->
+     <section id="intro" class="intro-section">
+    <h1 class="intro-title">¡Empieza la diversión!</h1>
+    <p class="intro-text">
+        Hoy jugamos con música, pero prepárate: nuevos desafíos y categorías están en camino. 
+        ¿Listo para demostrar qué tanto sabes?
+    </p>
+    <a href="#categories" class="play-link">Comenzar</a>
+</section>
 
     <!-- Categorías -->
     <section id="categories">
@@ -63,11 +67,11 @@
             </div>
             <div class="category-card words" onclick="showGames('words')">
                 <h3>Palabras</h3>
-                <p>Juegos de palabras</p>
+                <p>Juegos de palabras. (PROXIMAMENTE)</p>
             </div>
             <div class="category-card general" onclick="showGames('general')">
                 <h3>General</h3>
-                <p>Preguntas de cultura general</p>
+                <p>Preguntas de cultura general. (PROXIMAMENTE)</p>
             </div>
         </div>
     </section>
@@ -76,17 +80,46 @@
     <section id="games">
         <h2 id="games-title">Juegos por Categoría</h2>
         <div class="games-container" id="games-container">
-            <!-- Juegos dinámicos -->
+            <!-- tarjetas -->
         </div>
     </section>
 
-    <!-- Contacto -->
-    <section id="contact">
-        <h2>Contacto</h2>
-        <p>¿Tienes dudas o sugerencias? Escríbenos: contacto@triviajuegos.com</p>
-    </section>
+    <!-- Sobre Nosotros -->
+<!-- Sobre el Proyecto -->
+<section id="about" class="about-section">
+  <h2 class="about-title">Sobre el Proyecto</h2>
+  <div class="about-content">
+    <p>
+      <strong>Trivia & Juegos</strong> es una plataforma web interactiva creada con el objetivo de mezclar entretenimiento y aprendizaje a través de desafíos dinámicos. La idea surgió de una pasión por la música, la tecnología y el deseo de ofrecer algo más que solo un juego: una experiencia divertida, educativa y gratuita.
+    </p>
 
-    <!-- Footer -->
+    <p>
+      El proyecto inició con una trivia musical basada en fragmentos de canciones reales, utilizando la API pública de Deezer para enriquecer la experiencia sin necesidad de registro. Posteriormente se sumó <strong>Songless</strong>, un reto más complejo que desafía tu oído y memoria sin pistas visuales ni letras.
+    </p>
+
+    <p>
+      Cada detalle fue pensado para que puedas jugar en cualquier momento, desde cualquier dispositivo, sin interrupciones ni formularios. Además, se prioriza la privacidad del usuario, evitando el uso de cookies invasivas o recopilación de datos personales.
+    </p>
+
+    <p>
+      El desarrollo técnico fue realizado con <strong>HTML, CSS, JavaScript</strong> y componentes integrados, asegurando un rendimiento óptimo y responsive. Próximamente se integrarán nuevas categorías como palabras, cultura general y mucho más.
+    </p>
+
+    <p>
+      Gracias por ser parte de este proyecto. Tu retroalimentación y participación ayudan a seguir mejorando. 🎮
+    </p>
+  </div>
+</section>
+
+    <!-- Contacto -->
+    <section id="contact" class="contact-section">
+    <h2 class="contact-title">¿Tienes dudas o sugerencias?</h2>
+    <p class="contact-text">
+        Nos encanta recibir tus ideas, comentarios o problemas técnicos.<br>
+        Escríbenos a <a href="mailto:contacto@triviajuegos.com" class="contact-email">contacto@triviajuegos.com</a> y te responderemos pronto.
+    </p>
+</section>
+
      <!-- Footer -->
 <footer id="main-footer">
     <div class="footer-container">
@@ -97,6 +130,9 @@
             <a href="#intro">Inicio</a>
             <a href="#categories">Categorías</a>
             <a href="#contact">Contacto</a>
+            <a href="#about">Sobre Nosotros</a> | 
+            <a href="/html/privacidad.html">Política de Privacidad</a>
+            <a href="/html/terminos.html">Términos de Uso</a>
         </div>
         <div class="footer-copy">
             &copy; 2025 TriviaJuegos. Todos los derechos reservados.
@@ -104,7 +140,36 @@
     </div>
 </footer>
 
-    <!-- JS -->
     <script src="/js/categories.js"></script>
+
+    <!-- Banner de Cookies -->
+    <div id="cookie-banner">
+      <p>
+        Usamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestra 
+        <a href="/html/privacidad.html">Política de Privacidad</a>.
+      </p>
+      <button id="accept-cookies">Aceptar</button>
+    </div>
+
+    <script>
+        // JS Para el banner de cookies
+      document.addEventListener('DOMContentLoaded', function () {
+  const cookieBanner = document.getElementById('cookie-banner');
+  const acceptButton = document.getElementById('accept-cookies');
+
+  // Mostrar el banner solo si NO se ha aceptado aún
+  if (localStorage.getItem('cookiesAccepted') !== 'true') {
+    cookieBanner.style.display = 'block';
+  }
+
+  // Cuando el usuario hace clic en Aceptar
+  acceptButton.addEventListener('click', function () {
+    localStorage.setItem('cookiesAccepted', 'true');
+    cookieBanner.style.display = 'none';
+  });
+});
+
+    </script>
+
 </body>
 </html>

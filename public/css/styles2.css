@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
-  background: linear-gradient(to bottom right, #565682, #083469);
+  background: linear-gradient(to bottom right, #28283a, #1e1e2e);
   color: #ffffff;
   min-height: 100vh;
   display: flex;
@@ -18,10 +18,10 @@ body {
 }
 
 #game-container {
-  background: linear-gradient(to bottom right, #353539, #546c88);
+  background: linear-gradient(to bottom right, #2e2e2e, #262628);
   padding: 30px 40px;
   border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 20px rgb(0, 0, 0);
   width: 100%;
   max-width: 500px;
   text-align: center;
@@ -36,7 +36,7 @@ body {
 #game-container p {
   margin-bottom: 20px;
   font-size: 1.1rem;
-  color: #ddd;
+  color: #dddddd;
 }
 
 input[type="text"] {
@@ -56,26 +56,28 @@ button {
   margin: 10px 5px;
   border: none;
   border-radius: 10px;
-  background-color: #8e55ac;
-  color: #efefef;
+  background-color: #352f2f;
+  color: #ffffff;
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+   box-shadow: 0 4px 8px rgb(0, 0, 0);
 }
 
 button:hover {
-  background-color: #567fbc;
+  background-color: #e94560;
   transform: scale(1.05);
+  box-shadow: 0 6px 12px rgb(0, 0, 0);
 }
 
 #play-btn {
   background-color: #000000;
-  color: rgb(0, 255, 4);
+  color: #3bed32;
 }
 
 #play-btn:hover {
-  background-color: #26ff00;
+  background-color: #3bed32;
   color: #000000;
 }
 
@@ -86,10 +88,11 @@ button:hover {
 }
 
 #attempts-list li {
-  background: rgb(171, 66, 66);
+  background: #a24d4d;
   margin: 5px 0;
   padding: 8px 12px;
   border-radius: 8px;
+  color: #ffffff;
 }
 
 #message-area {
@@ -98,36 +101,84 @@ button:hover {
   font-weight: bold;
 }
 
-#round-info {
-  margin-top: 20px;
-  font-style: italic;
-  color: #3bed32;
-}
-
 #back-home-btn {
   margin-top: 30px;
-  background-color: #2a609e;
+  background-color: #009a2c;
   color: white;
 }
 
 #back-home-btn:hover {
-  background-color: #6e2886;
+  background-color: #117618;
 }
 
 /* Loading indicator */
 #loading-indicator {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-color: #d0d0d0;
-font-weight: 700;
-font-size: 18px;
-background-color: rgba(0, 0, 0, 0.472);
-padding: 10px 20px;
-border-radius: 12px;
-display: none;
-user-select: none;
-z-index: 20;
-animation: pulse 1.6s infinite ease-in-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #d0d0d0;
+  font-weight: 700;
+  font-size: 18px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px 20px;
+  border-radius: 12px;
+  display: none;
+  user-select: none;
+  z-index: 20;
+  animation: pulse 1.6s infinite ease-in-out;
+}
+
+/*seccion de mensaje final*/
+
+#final-score {
+  background: linear-gradient(to bottom right, #2c2c3b, #4a6d8a);
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  max-width: 500px;
+  margin-top: 30px;
+  text-align: center;
+  color: #ffffff;
+}
+
+#final-score h2 {
+  color: #3bed32;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+#final-score p {
+  font-size: 1.2rem;
+  margin: 8px 0;
+}
+
+/* Mensajes de error y éxito */
+.message-error {
+  color: #ff4b4b;
+}
+
+.message-success {
+  color: #3bed32;
+}
+
+#round-info {
+  color: #ffffff;
+}
+
+
+/* Animación pulse */
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
 }

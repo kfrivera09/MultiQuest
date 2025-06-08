@@ -16,6 +16,59 @@ body {
     line-height: 1.6;
 }
 
+/* Animación de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilo mejorado para intro */
+.intro-section {
+  text-align: center;
+  padding: 80px 20px;
+  background-color: #f5f7fa;
+  animation: fadeInUp 1s ease-out;
+}
+
+.intro-title {
+  font-size: 2.5rem;
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.intro-text {
+  font-size: 1.2rem;
+  color: #ffffff;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+}
+
+.play-link {
+  display: inline-block;
+  background-color: #16213e;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 1s ease;
+}
+
+.play-link:hover {
+  background-color: #16213e;
+}
+
+
 /* Header */
 #main-header {
     background-color: #16213e;
@@ -184,22 +237,23 @@ body {
     margin-bottom: 30px;
 }
 
-/* Botón reutilizado */
+/* Botón para jugar */
 .play-link {
-    display: inline-block;
-    padding: 12px 24px;
+    padding: 2px 24px; /* menos alto pero mismo ancho */
     font-size: 16px;
     font-weight: bold;
-    color: white;
-    background-color: #1db954;
+    color: rgb(255, 255, 255);
+    background-color: #30a258;
     border-radius: 12px;
     text-decoration: none;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 10px; 
 }
 
 .play-link:hover {
     background-color: #1aa34a;
     transform: scale(1.05);
+    box-shadow: 0 8px 16px rgb(0, 0, 0);
 }
 
 .play-link:active {
@@ -297,40 +351,110 @@ body {
 
 .game-card {
     flex: 1 1 calc(25% - 20px);
-    background:rgb(109, 99, 89);
-    color: white;
+    background: rgb(157, 178, 191);
+    color: rgb(0, 0, 0);
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    overflow: hidden;
+    overflow: visible;  /* Cambiado de hidden a visible */
     max-width: 250px;
+    display: flex;
+    flex-direction: column;  /* Para que el contenido se apile verticalmente */
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 24px rgb(0, 0, 0);
 }
 
 .game-card img {
-    width: 100%;
-    height: auto;
-    border-bottom: 2px solid #fbfbfb;
+    width: 64px;         /* Tamaño típico de ícono */
+    height: 64px;
+    object-fit: contain; /* Mantiene proporción sin recortar */
+    margin: 20px auto 10px;
+    display: block;
 }
 
 .game-info {
     padding: 15px;
+    flex-grow: 1; /* para que ocupe el espacio disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .game-info h4 {
-    margin-bottom: 10px;
+    margin-bottom: 4px; /* menos espacio que 10px */
     font-size: 18px;
-    color: #fefefe;
+    color: #000000;
 }
 
 .game-info p {
+    margin-bottom: 0; /* para evitar espacio extra arriba */
     font-size: 14px;
 }
 
+
 /* Contacto */
-#contact {
-    padding: 50px 20px;
-    text-align: center;
+.contact-section {
     background: linear-gradient(to bottom, #16213e, #1a1a2e);
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.contact-title {
+    font-size: 2rem;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 20px; 
+    font-family: 'Poppins', sans-serif;
+}
+
+.contact-text {
+    font-size: 1.1rem;
+    color: #ffffff;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+}
+
+.contact-email {
+    color: #2fff00;
+    font-weight: 600;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.contact-email:hover {
+    color: #ff1e74;
+}
+
+/* about us  */
+
+.about-section {
+  background-color: #16213e;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.about-content p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Responsive */
@@ -359,6 +483,60 @@ body {
         align-items: flex-start;
     }
 }
+
+/* Estilos para el banner de cookies */
+
+  #cookie-banner {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    z-index: 9999;
+  }
+
+  #cookie-banner p {
+    display: inline;
+    margin-right: 10px;
+  }
+
+  #cookie-banner a {
+    color: #00bcd4;
+    text-decoration: underline;
+  }
+
+  #cookie-banner button {
+    background-color: #00bcd4;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+#cookie-banner button:hover {
+  background-color: #3a9bd8;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 480px) {
+  #cookie-banner {
+    flex-direction: column;
+    padding: 15px 10px;
+    text-align: center;
+  }
+  #cookie-banner button {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
 /* Footer */
 #main-footer {
     background-color: #1a1a2e;

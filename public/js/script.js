@@ -147,11 +147,8 @@ async function startGame() {
         return;
     }
 
-    console.log('Canciones obtenidas del servidor:', songs);
-
+    // Selecciona una canción aleatoria
     const song = getRandomSong(songs);
-    console.log('Canción seleccionada:', song);
-
     if (!song || !song.stream_url) {
         feedback.textContent = 'Error al cargar el fragmento.';
         console.error('No se pudo cargar el fragmento.');
@@ -164,8 +161,6 @@ async function startGame() {
     attemptsElement.textContent = remainingAttempts;
 
     audio.src = song.stream_url; // Configura la canción seleccionada
-    console.log('Fragmento cargado en audio.src:', audio.src);
-
     playFragmentBtn.disabled = false;
     feedback.textContent = '';
 
@@ -226,15 +221,11 @@ function endGame(success) {
 // Obtener canciones desde el backend
 async function fetchSongs(selectedArtist) {
     try {
-        console.log('Valor de selectedArtist:', selectedArtist);
         if (!selectedArtist) {
             throw new Error('selectedArtist está indefinido.');
         }
 
         const apiUrl = `/api/songs?artist=${encodeURIComponent(selectedArtist)}`;
-        console.log('URL construida para el backend:', apiUrl);
-        console.info('Consulta construida para backend:', apiUrl);
-
         mostrarCarga(); // Mostrar indicador de carga
 
         const res = await fetch(apiUrl);
