@@ -394,6 +394,64 @@ body {
     font-size: 14px;
 }
 
+/* estilos para instrucciones  */
+
+.instructions-section {
+    padding: 3rem 1rem;
+    background-color: #16213e;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.instructions-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #ffffff;
+}
+
+.instructions-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.instruction-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgb(0, 0, 0);
+    transition: transform 0.3s ease;
+    text-align: left;
+}
+
+.instruction-card:hover {
+    transform: translateY(-5px);
+}
+
+.instruction-card .icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+}
+
+.instruction-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.7rem;
+    color: #000000;
+}
+
+.instruction-card ul {
+    padding-left: 1.2rem;
+    list-style-type: disc;
+    color: #000000;
+}
+
+.instruction-card li {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
 
 /* Contacto */
 .contact-section {

@@ -23,8 +23,9 @@
             <ul class="nav-links">
                 <li><a href="#intro">Inicio</a></li>
                 <li><a href="#categories">Categorías</a></li>
+                <li><a href="#instructions">Instrucciones</a></li>
                 <li><a href="#contact">Contacto</a></li>
-                <li><a href="#about">Sobre Nosotros</a></li>
+                <li><a href="#about">Sobre El Proyecto</a></li>
             </ul>
         </nav>
         <button class="login-btn">Iniciar Sesión</button>
@@ -40,8 +41,9 @@
     <ul>
         <li><a href="#intro" onclick="toggleMenu()">Inicio</a></li>
         <li><a href="#categories" onclick="toggleMenu()">Categorías</a></li>
+        <li><a href="#instructions" onclick="toggleMenu()">Instrucciones</a></li>
         <li><a href="#contact" onclick="toggleMenu()">Contacto</a></li>
-        <li><a href="#about" onclick="toggleMenu()">Sobre Nosotros</a></li>
+        <li><a href="#about" onclick="toggleMenu()">Sobre El Proyecto</a></li>
         <li><a href="#" onclick="toggleMenu()">Iniciar Sesión</a></li>
     </ul>
 </nav>
@@ -83,6 +85,63 @@
             <!-- tarjetas -->
         </div>
     </section>
+
+   <!-- Instrucciones Visuales -->
+<section id="instructions" class="instructions-section">
+  <h2 class="instructions-title">Instrucciones y Recomendaciones</h2>
+  <div class="instructions-cards">
+
+    <div class="instruction-card">
+      <div class="icon">🎵</div>
+      <h3>Trivia Musical</h3>
+      <ul>
+        <li>Escucha el fragmento de la canción.</li>
+        <li>Tendras 2 oportunidades por ronda.</li>
+        <li>Al primer fallo el fragmento aumentara de duracion.</li>
+        <li>Elige la respuesta correcta entre 3 opciones.</li>
+        <li>Ganas 5 puntos al acertar a la primera, 3 puntos al acertar a la segunda.</li>
+      </ul>
+    </div>
+
+    <div class="instruction-card">
+      <div class="icon">🕶️</div>
+      <h3>Modo Songless</h3>
+      <ul>
+        <li>Escucha la canción sin pistas visuales ni letras.</li>
+        <li>Adivina solo con tu oído musical.</li>
+        <li>Modo avanzado, ideal para expertos en música.</li>
+        <li>El fragmento inicial tendrá una duración de 3 seg.</li>
+        <li>Tendrás 7 oportunidades por ronda.</li>
+        <li>Entre cada fallo el fragmento aumentará de duración.</li>
+        <li>Puedes escuchar el fragmento tantas veces como desees.</li>
+        <li>Cuidado, entre más fallos tengas menos serán los puntos que obtengas.</li>
+      </ul>
+    </div>
+
+    <div class="instruction-card">
+  <div class="icon">💡</div>
+  <h3>Notas importantes sobre el funcionamiento</h3>
+  <ul>
+    <li>Las canciones se obtienen a través de la API oficial de Deezer, por lo que los resultados dependen directamente de su base de datos.</li>
+    <li>La búsqueda se realiza por álbumes. Si el artista es nuevo o tiene poca discografía, podrían generarse errores al intentar obtener canciones.</li>
+    <li>En algunos casos, si existen artistas con nombres similares o idénticos, la API puede devolver resultados incorrectos o mezclados.</li>
+    <li>Estas situaciones son propias del servicio de Deezer y están fuera del control de la plataforma de trivia.</li>
+  </ul>
+</div>
+
+    <div class="instruction-card">
+      <div class="icon">ℹ️</div>
+      <h3>Información importante sobre el contenido</h3>
+      <ul>
+        <li>Las canciones utilizadas en el juego se obtienen directamente desde la API de Deezer.</li>
+        <li>Es posible que algunas canciones no cuenten con fragmentos de audio disponibles para su reproducción.</li>
+        <li>Si una canción no se reproduce correctamente, te recomendamos cambiar de artista o actualizar la página para intentarlo de nuevo.</li>
+  </ul>
+</div>
+
+
+  </div>
+</section>
 
     <!-- Sobre Nosotros -->
 <!-- Sobre el Proyecto -->
@@ -129,8 +188,9 @@
         <div class="footer-links">
             <a href="#intro">Inicio</a>
             <a href="#categories">Categorías</a>
+            <a href="#instructions">Instrucciones</a>
             <a href="#contact">Contacto</a>
-            <a href="#about">Sobre Nosotros</a> | 
+            <a href="#about">Sobre El Proyecto</a> | 
             <a href="/html/privacidad.html">Política de Privacidad</a>
             <a href="/html/terminos.html">Términos de Uso</a>
         </div>
