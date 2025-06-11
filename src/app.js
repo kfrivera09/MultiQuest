@@ -1,37 +1,33 @@
 import express from 'express';
-import triviaRoutes from './src/routes/triviaRoutes.js';
-import songlessRoutes from './src/routes/songlessRoutes.js';
+import triviaRoutes from './routes/triviaRoutes.js';
+import songlessRoutes from './routes/songlessRoutes.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url); // Obtiene el nombre del archivo
-const __dirname = path.dirname(__filename); // Obtiene el directorio actual
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = 3000;
 
-// Middleware para servir archivos estáticos (como CSS o imágenes)
+// Archivos estáticos (como CSS, JS e imágenes)
 app.use(express.static(path.resolve('public')));
 
-// Ruta principal para servir la página de aterrizaje (home.html)
+// Página de inicio (landing)
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve('public/html/home.html')); // Servir home.html como landing principal
+  res.sendFile(path.resolve('public/html/home.html'));
 });
 
-// Ruta específica para servir Trivia Musical (index.html)
+// Página de la trivia musical
 app.get('/trivia', (req, res) => {
-    res.sendFile(path.resolve('public/html/index.html')); // Servir index.html al acceder a /trivia
+  res.sendFile(path.resolve('public/html/index.html'));
 });
 
-// Rutas de la API (incluye las rutas de trivia)
+// Rutas de APIs
 console.log('Cargando rutas desde triviaRoutes.js...');
-app.use('/api', triviaRoutes); // Define las rutas específicas para la API
+app.use('/api', triviaRoutes);
 
-// Ruta para servir la página de Songless (songless.html)
 console.log('Cargando rutas desde songlessRoutes.js...');
-app.use('/api', songlessRoutes); // Asegúrate de que esta línea exista para incluir las rutas de songlessRoutes
+app.use('/api', songlessRoutes);
 
-// Inicia el servidor
-app.listen(port, () => {
-    console.log(`Servidor corriendo en http://localhost:${port}`);
-});
+// No usamos app.listen()
+export default app;
