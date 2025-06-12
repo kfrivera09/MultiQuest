@@ -233,19 +233,21 @@ async function fetchSongs(selectedArtist) {
             throw new Error(`Error ${res.status}: No se pudieron obtener canciones.`);
         }
 
-        const songs = await res.json();
+        const data = await res.json(); // <-- cambio aquí
+        const songs = data.songs || []; // <-- y aquí
+
         console.info('Respuesta del backend:', songs);
 
         if (!Array.isArray(songs) || songs.length === 0) {
             throw new Error('Sin canciones válidas.');
         }
 
-        return songs; // Retornar las canciones procesadas
+        return songs;
     } catch (err) {
         feedback.textContent = 'No se pudieron cargar las canciones. Intenta más tarde.';
         console.error('Error al obtener canciones:', err.message);
         return [];
-    }finally {
+    } finally {
         ocultarCarga(); // Ocultar indicador de carga
     }
 }
