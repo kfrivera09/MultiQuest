@@ -34,8 +34,13 @@ router.get('/songs', async (req, res) => {
       return res.status(404).json({ error: `No se encontró el artista '${artistNameRaw}'.` });
     }
 
-    const artist = artistData.data.find(a => normalize(a.name) === artistName) || artistData.data[0];
-    const artistId = artist.id;
+    // Mejora para seleccionar el artista más preciso
+    const selectedArtist =
+      artistData.data.find(a => normalize(a.name) === artistName) ||
+      artistData.data.find(a => normalize(a.name).includes(artistName)) ||
+      artistData.data[0];
+
+    const artistId = selectedArtist.id;
 
     // Obtener álbumes
     const albumsUrl = `https://api.deezer.com/artist/${artistId}/albums?limit=8`;
@@ -114,7 +119,11 @@ router.get('/songs', async (req, res) => {
       return res.status(404).json({ error: `No se encontraron canciones para el artista '${artistNameRaw}'.` });
     }
 
-    res.json(allSongs);
+    // También podrías devolver el nombre exacto del artista si quieres mostrarlo en frontend
+    res.json({
+      artist: selectedArtist.name,
+      songs: allSongs
+    });
 
   } catch (error) {
     console.error('Error al conectar con Deezer API:', error);
