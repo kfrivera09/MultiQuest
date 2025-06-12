@@ -3,12 +3,6 @@ import fetch from 'node-fetch';
 
 const router = express.Router();
 
-const normalize = (str) =>
-  str?.trim().toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9 ]/g, "");
-
 const shuffleSongs = (songs) => {
   for (let i = songs.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -23,9 +17,8 @@ router.get('/songs', async (req, res) => {
     return res.status(400).json({ error: 'Debe proporcionar un nombre de artista para buscar canciones.' });
   }
 
-  const artistName = normalize(artistNameRaw);
-
   try {
+    // Buscar artista por nombre
     const searchArtistUrl = `https://api.deezer.com/search/artist?q=${encodeURIComponent(artistNameRaw)}`;
     const artistResp = await fetch(searchArtistUrl);
     const artistData = await artistResp.json();
@@ -34,20 +27,16 @@ router.get('/songs', async (req, res) => {
       return res.status(404).json({ error: `No se encontró el artista '${artistNameRaw}'.` });
     }
 
-    // Mejora para seleccionar el artista más preciso
-    const selectedArtist =
-      artistData.data.find(a => normalize(a.name) === artistName) ||
-      artistData.data.find(a => normalize(a.name).includes(artistName)) ||
-      artistData.data[0];
-
+    // Seleccionar el primer artista encontrado (más relevante)
+    const selectedArtist = artistData.data[0];
     const artistId = selectedArtist.id;
+
+    let allSongs = [];
 
     // Obtener álbumes
     const albumsUrl = `https://api.deezer.com/artist/${artistId}/albums?limit=8`;
     const albumsResp = await fetch(albumsUrl);
     const albumsData = await albumsResp.json();
-
-    let allSongs = [];
 
     if (albumsData.data && albumsData.data.length > 0) {
       for (const album of albumsData.data) {
@@ -56,10 +45,7 @@ router.get('/songs', async (req, res) => {
         const tracksData = await tracksResp.json();
 
         if (tracksData.data && tracksData.data.length > 0) {
-          const filteredTracks = tracksData.data.filter(track =>
-            track.preview &&
-            normalize(track.artist.name) === artistName
-          ).map(track => ({
+          const filteredTracks = tracksData.data.filter(track => track.preview).map(track => ({
             id: track.id,
             title: track.title,
             artist: track.artist.name,
@@ -71,17 +57,14 @@ router.get('/songs', async (req, res) => {
       }
     }
 
-    // Si no hay suficientes, buscar en top tracks
+    // Si no hay suficientes, buscar top tracks
     if (allSongs.length < 10) {
       const topTracksUrl = `https://api.deezer.com/artist/${artistId}/top?limit=15`;
       const topResp = await fetch(topTracksUrl);
       const topData = await topResp.json();
 
       if (topData.data && topData.data.length > 0) {
-        const topSongs = topData.data.filter(track =>
-          track.preview &&
-          normalize(track.artist.name) === artistName
-        ).map(track => ({
+        const topSongs = topData.data.filter(track => track.preview).map(track => ({
           id: track.id,
           title: track.title,
           artist: track.artist.name,
@@ -92,17 +75,14 @@ router.get('/songs', async (req, res) => {
       }
     }
 
-    // Si aún no hay suficientes, buscar globalmente canciones por artista
+    // Si aún no hay suficientes, buscar canciones globales por nombre del artista
     if (allSongs.length < 20) {
       const globalSearchUrl = `https://api.deezer.com/search?q=artist:"${encodeURIComponent(artistNameRaw)}"`;
       const globalResp = await fetch(globalSearchUrl);
       const globalData = await globalResp.json();
 
       if (globalData.data && globalData.data.length > 0) {
-        const globalTracks = globalData.data.filter(track =>
-          track.preview &&
-          normalize(track.artist.name) === artistName
-        ).map(track => ({
+        const globalTracks = globalData.data.filter(track => track.preview).map(track => ({
           id: track.id,
           title: track.title,
           artist: track.artist.name,
@@ -119,7 +99,6 @@ router.get('/songs', async (req, res) => {
       return res.status(404).json({ error: `No se encontraron canciones para el artista '${artistNameRaw}'.` });
     }
 
-    // También podrías devolver el nombre exacto del artista si quieres mostrarlo en frontend
     res.json({
       artist: selectedArtist.name,
       songs: allSongs
