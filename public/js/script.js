@@ -118,7 +118,7 @@ async function startGame() {
   }
 
   const song = getRandomSong(songs);
-  if (!song || !song.stream_url || !song.stream_url.includes('deezer.com')) {
+  if (!song || !song.stream_url) {
     feedback.textContent = 'Esta canción no tiene fragmento disponible.';
     playFragmentBtn.disabled = true;
     return;
