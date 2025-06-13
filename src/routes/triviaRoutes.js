@@ -3,14 +3,14 @@ import fetch from 'node-fetch';
 
 const router = express.Router();
 
-// Función para normalizar texto
+// Normaliza texto para comparar nombres
 const normalize = (str) =>
   str?.trim().toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9 ]/g, "");
 
-// Función para mezclar canciones
+// Mezcla aleatoriamente las canciones
 const shuffleSongs = (songs) => {
   for (let i = songs.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -29,12 +29,13 @@ router.get('/songs', async (req, res) => {
   let selectedArtist;
 
   try {
-    // Excepción manual para Blessd
-    if (artistName === 'blessd' || artistName === 'blessd') {
+    // ID manual para Blessd
+    if (artistName === 'blessd') {
       selectedArtist = {
-        id: 106632,
+        id: 106632, // ID correcto
         name: 'Blessd'
       };
+      console.log('Usando ID manual para Blessd:', selectedArtist.id);
     } else {
       const searchArtistUrl = `https://api.deezer.com/search/artist?q=${encodeURIComponent(artistNameRaw)}`;
       const artistResp = await fetch(searchArtistUrl);
@@ -52,7 +53,7 @@ router.get('/songs', async (req, res) => {
 
     const artistId = selectedArtist.id;
 
-    // Obtener álbumes
+    // Obtener álbumes del artista
     const albumsUrl = `https://api.deezer.com/artist/${artistId}/albums?limit=8`;
     const albumsResp = await fetch(albumsUrl);
     const albumsData = await albumsResp.json();
@@ -67,8 +68,7 @@ router.get('/songs', async (req, res) => {
 
         if (tracksData.data && tracksData.data.length > 0) {
           const filteredTracks = tracksData.data.filter(track =>
-            track.preview &&
-            normalize(track.artist.name).includes(artistName)
+            track.preview // Solo valida que tenga preview
           ).map(track => ({
             id: track.id,
             title: track.title,
@@ -81,7 +81,7 @@ router.get('/songs', async (req, res) => {
       }
     }
 
-    // Si no hay suficientes, buscar en top tracks
+    // Si no hay suficientes, buscar top tracks
     if (allSongs.length < 10) {
       const topTracksUrl = `https://api.deezer.com/artist/${artistId}/top?limit=15`;
       const topResp = await fetch(topTracksUrl);
@@ -89,8 +89,7 @@ router.get('/songs', async (req, res) => {
 
       if (topData.data && topData.data.length > 0) {
         const topSongs = topData.data.filter(track =>
-          track.preview &&
-          normalize(track.artist.name).includes(artistName)
+          track.preview
         ).map(track => ({
           id: track.id,
           title: track.title,
@@ -102,7 +101,7 @@ router.get('/songs', async (req, res) => {
       }
     }
 
-    // Si aún no hay suficientes, buscar globalmente canciones por artista
+    // Si aún no hay suficientes, hacer búsqueda global
     if (allSongs.length < 20) {
       const globalSearchUrl = `https://api.deezer.com/search?q=artist:"${encodeURIComponent(artistNameRaw)}"`;
       const globalResp = await fetch(globalSearchUrl);
@@ -110,8 +109,7 @@ router.get('/songs', async (req, res) => {
 
       if (globalData.data && globalData.data.length > 0) {
         const globalTracks = globalData.data.filter(track =>
-          track.preview &&
-          normalize(track.artist.name).includes(artistName)
+          track.preview
         ).map(track => ({
           id: track.id,
           title: track.title,
