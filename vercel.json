@@ -12,6 +12,10 @@
       "dest": "src/api.js"
     },
     {
+      "src": "^/$",
+      "dest": "/public/html/home.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/public/$1"
     }
