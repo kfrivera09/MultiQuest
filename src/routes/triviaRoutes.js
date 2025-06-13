@@ -26,29 +26,28 @@ router.get('/songs', async (req, res) => {
   }
 
   const artistName = normalize(artistNameRaw);
+  let selectedArtist;
 
   try {
-    const searchArtistUrl = `https://api.deezer.com/search/artist?q=${encodeURIComponent(artistNameRaw)}`;
-    const artistResp = await fetch(searchArtistUrl);
-    const artistData = await artistResp.json();
+    // Excepción manual para Blessd
+    if (artistName === 'bless' || artistName === 'blessd') {
+      selectedArtist = {
+        id: 11631905,
+        name: 'Blessd'
+      };
+    } else {
+      const searchArtistUrl = `https://api.deezer.com/search/artist?q=${encodeURIComponent(artistNameRaw)}`;
+      const artistResp = await fetch(searchArtistUrl);
+      const artistData = await artistResp.json();
 
-    if (!artistData.data || artistData.data.length === 0) {
-      return res.status(404).json({ error: `No se encontró el artista '${artistNameRaw}'.` });
-    }
+      if (!artistData.data || artistData.data.length === 0) {
+        return res.status(404).json({ error: `No se encontró el artista '${artistNameRaw}'.` });
+      }
 
-    // Selección más precisa del artista
-    let selectedArtist = artistData.data.find(a => normalize(a.name) === artistName);
-
-    if (!selectedArtist) {
-      selectedArtist = artistData.data.find(a => normalize(a.name).startsWith(artistName));
-    }
-
-    if (!selectedArtist) {
-      selectedArtist = artistData.data.find(a => normalize(a.name).includes(artistName));
-    }
-
-    if (!selectedArtist) {
-      selectedArtist = artistData.data[0];
+      selectedArtist = artistData.data.find(a => normalize(a.name) === artistName)
+        || artistData.data.find(a => normalize(a.name).startsWith(artistName))
+        || artistData.data.find(a => normalize(a.name).includes(artistName))
+        || artistData.data[0];
     }
 
     const artistId = selectedArtist.id;
