@@ -30,9 +30,9 @@ router.get('/songs', async (req, res) => {
 
   try {
     // Excepción manual para Blessd
-    if (artistName === 'bless' || artistName === 'blessd') {
+    if (artistName === 'blessd' || artistName === 'blessd') {
       selectedArtist = {
-        id: 11631905,
+        id: 106632,
         name: 'Blessd'
       };
     } else {
