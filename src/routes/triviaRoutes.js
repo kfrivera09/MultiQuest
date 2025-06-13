@@ -69,7 +69,7 @@ router.get('/songs', async (req, res) => {
         if (tracksData.data && tracksData.data.length > 0) {
           const filteredTracks = tracksData.data.filter(track =>
             track.preview &&
-            normalize(track.artist.name) === artistName
+            normalize(track.artist.name).includes(artistName)
           ).map(track => ({
             id: track.id,
             title: track.title,
@@ -91,7 +91,7 @@ router.get('/songs', async (req, res) => {
       if (topData.data && topData.data.length > 0) {
         const topSongs = topData.data.filter(track =>
           track.preview &&
-          normalize(track.artist.name) === artistName
+          normalize(track.artist.name).includes(artistName)
         ).map(track => ({
           id: track.id,
           title: track.title,
@@ -112,7 +112,7 @@ router.get('/songs', async (req, res) => {
       if (globalData.data && globalData.data.length > 0) {
         const globalTracks = globalData.data.filter(track =>
           track.preview &&
-          normalize(track.artist.name) === artistName
+          normalize(track.artist.name).includes(artistName)
         ).map(track => ({
           id: track.id,
           title: track.title,
