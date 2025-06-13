@@ -8,12 +8,15 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "src/api.js"
+      "src": "/",
+      "status": 301,
+      "headers": {
+        "Location": "/html/home.html"
+      }
     },
     {
-      "src": "/",
-      "dest": "/html/home.html"
+      "src": "/api/(.*)",
+      "dest": "src/api.js"
     },
     {
       "src": "/(.*)",
