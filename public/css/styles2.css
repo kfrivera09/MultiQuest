@@ -51,6 +51,23 @@ input[type="text"] {
   outline: none;
 }
 
+.btn-mid-restart {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #157aa5;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+}
+.btn-mid-restart:hover {
+    background-color: #4a6d8a;
+}
+
 button {
   padding: 12px 20px;
   margin: 10px 5px;

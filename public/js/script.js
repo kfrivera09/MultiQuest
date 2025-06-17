@@ -268,3 +268,29 @@ restartBtn.addEventListener('click', () => {
   showScoreContainer();
   startGame();
 });
+
+function volverAInicio() {
+  currentSong = null;
+  attemptCount = 0;
+  audioDuration = 2;
+  roundCount = 1;
+  score = 0;
+  usedSongs = [];
+  selectedArtist = "";
+
+  const artistInput = document.getElementById('artist-input');
+  artistInput.value = "";
+  artistInput.style.display = "block";
+
+  document.getElementById('start-btn').style.display = "inline-block";
+  document.getElementById('game-area').style.display = "none";
+  document.getElementById('final-score').style.display = "none";
+  document.getElementById('song-input').value = "";
+  document.getElementById('attempts-list').innerHTML = "";
+  document.getElementById('round-info').textContent = `Ronda: 1/5`;
+  document.getElementById('message-area').textContent = "";
+}
+
+document.getElementById("mid-restart-btn").addEventListener("click", volverAInicio);
+
+

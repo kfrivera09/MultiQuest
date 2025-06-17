@@ -163,7 +163,7 @@ function displayMessage(type, text) {
     messageArea.textContent = text;
 }
 
-document.getElementById("restart-btn").addEventListener("click", () => {
+function resetGame() {
     currentSong = null;
     attemptCount = 0;
     audioDuration = 2;
@@ -183,8 +183,14 @@ document.getElementById("restart-btn").addEventListener("click", () => {
     document.getElementById('attempts-list').innerHTML = "";
     document.getElementById('round-info').textContent = `Ronda: 1/5`;
     document.getElementById('message-area').textContent = "";
-});
+}
+
 
 document.getElementById("back-home-btn").addEventListener("click", () => {
     window.location.href = "home.html";
 });
+
+document.getElementById("restart-btn").addEventListener("click", resetGame);
+
+document.getElementById("mid-restart-btn").addEventListener("click", resetGame);
+
