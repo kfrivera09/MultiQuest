@@ -30,7 +30,7 @@ const normalizeTitle = (str) => {
 async function loadNewSong() {
     try {
         mostrarCarga();
-        const response = await fetch(`/api/songless?artist=${encodeURIComponent(normalizeTitle(selectedArtist))}`);
+       const response = await fetch(`/api/songless?artist=${encodeURIComponent(selectedArtist)}`);
 
         if (!response.ok) {
             throw new Error(`Error en la API: ${response.status}`);
@@ -63,7 +63,7 @@ async function loadNewSong() {
 }
 
 document.getElementById('start-btn').addEventListener('click', () => {
-    selectedArtist = normalizeTitle(document.getElementById('artist-input').value.trim());
+    selectedArtist = document.getElementById('artist-input').value.trim();
 
     if (!selectedArtist) {
         displayMessage("error", "Por favor, ingresa un nombre de artista.");

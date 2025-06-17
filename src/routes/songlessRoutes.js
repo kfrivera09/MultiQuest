@@ -10,7 +10,7 @@ const normalize = (str) => str?.trim().toLowerCase()
 
 // Endpoint para obtener las top tracks de un artista desde Deezer
 router.get('/songless', async (req, res) => {
-    const artistQuery = normalize(req.query.artist);
+    const artistQuery = req.query.artist?.trim();
 
     if (!artistQuery) {
         return res.status(400).json({ error: 'Debe proporcionar un nombre de artista.' });
