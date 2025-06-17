@@ -52,20 +52,19 @@ input[type="text"] {
 }
 
 .btn-mid-restart {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #157aa5;
+    background-color: #2b8cb6;
     color: white;
     border: none;
     padding: 8px 12px;
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    z-index: 10;
+    margin-top: 12px; /* opcional para separarlo del <p> */
 }
 .btn-mid-restart:hover {
-    background-color: #4a6d8a;
+    background-color: #3d566b;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgb(0, 0, 0);
 }
 
 button {
