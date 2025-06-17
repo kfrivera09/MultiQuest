@@ -20,11 +20,11 @@ function ocultarCarga() {
 const normalizeTitle = (str) => {
     return str?.trim().toLowerCase()
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")       
-        .replace(/\(feat[^\)]*\)/gi, "")       
-        .replace(/\[feat[^\]]*\]/gi, "")         
-        .replace(/[^a-z0-9]/g, "")               
-        .replace(/\s+/g, "");                    
+        .replace(/[\u0300-\u036f]/g, "")              // Elimina acentos
+        .replace(/\(.*?\)/g, "")                      // Elimina cualquier contenido entre paréntesis
+        .replace(/\[.*?\]/g, "")                      // Elimina cualquier contenido entre corchetes
+        .replace(/[^a-z0-9]/g, "")                    // Elimina cualquier caracter no alfanumérico
+        .replace(/\s+/g, "");                         // Elimina espacios
 };
 
 async function loadNewSong() {
@@ -89,13 +89,16 @@ document.getElementById('play-btn').addEventListener('click', () => {
 });
 
 document.getElementById('submit-btn').addEventListener('click', () => {
-    const userGuess = normalizeTitle(document.getElementById('song-input').value);
+    const rawGuess = document.getElementById('song-input').value.trim(); // lo que escribe el usuario
+    const userGuess = normalizeTitle(rawGuess); // versión normalizada para comparar
     const attemptsList = document.getElementById('attempts-list');
 
+    // Mostrar el intento tal como el usuario lo escribió
     const li = document.createElement('li');
-    li.textContent = userGuess;
+    li.textContent = rawGuess;
     attemptsList.appendChild(li);
 
+    // Comparar con el título normalizado de la canción actual
     if (userGuess === normalizeTitle(currentSong.title)) {
         let pointsEarned = 10 - (attemptCount >= 5 ? 6 : attemptCount);
         score += pointsEarned;
